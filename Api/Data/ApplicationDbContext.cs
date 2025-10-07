@@ -6,8 +6,21 @@ namespace Api.Data;
 
 public class ApplicationDbContext(DbContextOptions options) : IdentityDbContext<User, IdentityRole<int>, int>(options)
 {
-    DbSet<Course> Courses { get; set; }
-    DbSet<Class> Classes { get; set; }
-    DbSet<Exam> Exams { get; set; }
-    DbSet<Attendance> Attendances { get; set; }
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.Entity<User>()
+            .HasMany(u => u.CoursesSubscribed)
+            .WithMany(c => c.SubscribedUsers);
+
+        builder.Entity<Course>()
+            .HasOne(c => c.User)
+            .WithMany(u => u.Courses);
+    }
+
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Class> Classes { get; set; }
+    public DbSet<Exam> Exams { get; set; }
+    public DbSet<Attendance> Attendances { get; set; }
 }

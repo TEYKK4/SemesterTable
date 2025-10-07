@@ -10,3 +10,9 @@ public class User : IdentityUser<int>
     // Navigation property for related courses
     public ICollection<Course> Courses { get; set; } = new List<Course>();
 }
+
+// public class UserCourse
+// {
+//     public int UserId { get; set; }
+//     public int CourseId { get; set; }
+// }

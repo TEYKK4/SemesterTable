@@ -29,7 +29,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
-    app.ApplyMigrations();
+    // app.ApplyMigrations();
 }
 
 app.UseHttpsRedirection();

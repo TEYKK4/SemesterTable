@@ -1,12 +1,12 @@
 ﻿services:
   api:
-    image: semestertable.api
+    image: semestertable-api
     build:
       context: .
       dockerfile: Api/Dockerfile
 
   web:
-    image: semestertable.web
+    image: semestertable-web
     build:
       context: ./app
       dockerfile: ./Dockerfile
@@ -17,7 +17,7 @@
   
   db:
     image: postgres:15-alpine
-    container_name: semestertable.db
+    container_name: semestertable-db
     environment:
       POSTGRES_DB: semestertable
       POSTGRES_USER: postgres
