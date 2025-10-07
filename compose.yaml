@@ -1,0 +1,28 @@
+﻿services:
+  api:
+    image: semestertable.api
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+
+  web:
+    image: semestertable.web
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+  
+  db:
+    image: postgres:15-alpine
+    container_name: semestertable.db
+    environment:
+      POSTGRES_DB: semestertable
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./.containers/semestertable-db/:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
