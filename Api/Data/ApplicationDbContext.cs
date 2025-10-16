@@ -11,14 +11,15 @@ public class ApplicationDbContext(DbContextOptions options) : IdentityDbContext<
         base.OnModelCreating(builder);
 
         builder.Entity<User>()
-            .HasMany(u => u.CoursesSubscribed)
+            .HasMany(u => u.CurriculumsSubscribed)
             .WithMany(c => c.SubscribedUsers);
 
-        builder.Entity<Course>()
+        builder.Entity<Curriculum>()
             .HasOne(c => c.User)
-            .WithMany(u => u.Courses);
+            .WithMany(u => u.Curriculums);
     }
 
+    public DbSet<Curriculum> Curriculums { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Class> Classes { get; set; }
     public DbSet<Exam> Exams { get; set; }
