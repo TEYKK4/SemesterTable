@@ -5,14 +5,8 @@ namespace Api.Data;
 public class User : IdentityUser<int>
 {
     // Navigation property for subscribed courses
-    public ICollection<Course> CoursesSubscribed { get; set; } = new List<Course>();
+    public ICollection<Curriculum> CurriculumsSubscribed { get; set; } = new List<Curriculum>();
     
-    // Navigation property for related courses
-    public ICollection<Course> Courses { get; set; } = new List<Course>();
+    // Navigation property for related curriculums
+    public ICollection<Curriculum> Curriculums { get; set; } = new List<Curriculum>();
 }
-
-// public class UserCourse
-// {
-//     public int UserId { get; set; }
-//     public int CourseId { get; set; }
-// }
